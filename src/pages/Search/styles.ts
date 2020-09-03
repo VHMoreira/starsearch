@@ -37,6 +37,7 @@ export const Content = styled.div`
         margin-top: 20px;
         padding: 10px;
         border: 1px solid gray;
+        width: 100%;
 
         &:focus{
             border: 1px solid yellow;
@@ -52,6 +53,10 @@ export const Content = styled.div`
         padding: 10px;
         border: transparent;
         border-radius: 10px;
+
+        svg{
+            margin-right: 10px;
+        }
     }
 `;
 

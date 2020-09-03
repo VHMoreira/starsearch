@@ -40,7 +40,8 @@ const Search: React.FC = () => {
     const handleCharacterSelection = useCallback((character: ICharacter) => {
         setSelectedCharacter(character);
         setSelectedCharacterName(character.name);
-    }, []);
+        console.log(selectedCharacter)
+    }, [selectedCharacter]);
 
     return (
         <Container>
