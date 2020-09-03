@@ -1,10 +1,12 @@
 import React, { useState, useCallback } from 'react';
 
+import { useHistory } from 'react-router-dom';
 import Autocomplete from 'react-autocomplete';
 import { FiSearch } from "react-icons/fi";
 
 import { Container, Content, AutoCompleteOption } from './styles';
 import swapi from '../../services/swapi';
+import { useCharacter } from '../../hooks/Character';
 
 interface ICharacter {
     name: string;
@@ -24,8 +26,9 @@ interface ICharacter {
 const Search: React.FC = () => {
     const [selectedCharacterName, setSelectedCharacterName] = useState('');
     const [autocompleteOptions, setAutocompleteOptions] = useState<ICharacter[]>([]);
-    const [selectedCharacter, setSelectedCharacter] = useState<ICharacter>({} as ICharacter);
     const [timeOutID, setTimeOutId] = useState(0);
+    const history = useHistory();
+    const { character, alterCharacter } = useCharacter();
 
     const handleAutoCompleteOptions = useCallback(async (name: string) => {
         clearTimeout(timeOutID);
@@ -38,10 +41,15 @@ const Search: React.FC = () => {
     }, [timeOutID]);
 
     const handleCharacterSelection = useCallback((character: ICharacter) => {
-        setSelectedCharacter(character);
+        alterCharacter(character);
         setSelectedCharacterName(character.name);
-        console.log(selectedCharacter)
-    }, [selectedCharacter]);
+    }, [alterCharacter]);
+
+    const handleSearchCharacter = useCallback(() => {
+        if (character) {
+            history.push('/character');
+        }
+    }, [history, character]);
 
     return (
         <Container>
@@ -67,7 +75,7 @@ const Search: React.FC = () => {
                     onChange={({ target }) => handleAutoCompleteOptions(target.value)}
                     onSelect={(_, item) => handleCharacterSelection(item)}
                 />
-                <button>
+                <button onClick={handleSearchCharacter}>
                     <FiSearch /> Pesquisar
                 </button>
             </Content>
