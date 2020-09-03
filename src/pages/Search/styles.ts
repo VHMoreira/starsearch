@@ -16,7 +16,6 @@ export const Container = styled.div`
             -webkit-text-fill-color: black;
             -webkit-text-stroke-width: 2px;
             -webkit-text-stroke-color: yellow;
-            font-family: 'Star Jedi';
         }
     }
     
@@ -54,4 +53,10 @@ export const Content = styled.div`
         border: transparent;
         border-radius: 10px;
     }
+`;
+
+export const AutoCompleteOption = styled.div`
+    padding: 10px;
+    color: black;
+    background: white;
 `;
