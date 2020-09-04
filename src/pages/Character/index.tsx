@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import { Container, Content, ContentList } from './styles';
+import { Container, Content, ContentList, SingleContent } from './styles';
 import { useCharacter } from '../../hooks/Character';
 
 import axios from 'axios';
@@ -144,48 +144,47 @@ const Character: React.FC = () => {
                         {isFavorite ? <AiFillStar size={30} onClick={handleToggleFavorite} /> : <AiOutlineStar size={30} onClick={handleToggleFavorite} />}
                     </header>
                     <Content>
-                        <section>
+                        <SingleContent>
                             <span>Altura:</span> {character.height} cm
-                        </section>
-                        <section>
+                        </SingleContent>
+                        <SingleContent>
                             <span>Peso:</span> {character.mass} Kg
-                        </section>
-                        <section>
+                        </SingleContent>
+                        <SingleContent>
                             <span>Cor do cabelo:</span> {character.hair_color}
-                        </section>
-                        <section>
+                        </SingleContent>
+                        <SingleContent>
                             <span>Cor dos olhos:</span> {character.eye_color}
-                        </section>
-                        <section>
+                        </SingleContent>
+                        <SingleContent>
                             <span>Ano de nascimento:</span> {character.birth_year}
-                        </section>
-                        <section>
+                        </SingleContent>
+                        <SingleContent>
                             <span>Gênero:</span> {character.gender}
-                        </section>
-                        <section>
+                        </SingleContent>
+                        <SingleContent>
                             <span>Planeta natal:</span> {character.homeworld}
-                        </section>
+                        </SingleContent>
                         <ContentList>
-                            <div>
-                                <span>Filmes:</span>
-                            </div>
+
+                            <span>Filmes:</span>
                             {character.films.map((film, index) => {
                                 return (
-                                    <Link to={`/character/film/${index}`} key={film.title}>
-                                        {film.title}
-                                    </Link>
+                                    <section>
+                                        <Link to={`/character/film/${index}`} key={film.title}>
+                                            {film.title} <span>Ver mais</span>
+                                        </Link>
+                                    </section>
                                 );
                             })}
                         </ContentList>
                         {character.vehicles.length > 0 &&
                             <ContentList>
-                                <div>
-                                    <span>Veiculos:</span>
-                                </div>
+                                <span>Veiculos:</span>
                                 {character.vehicles.map((vehicles, index) => {
                                     return (
                                         <Link to={`/character/vehicle/${index}`} key={vehicles.name}>
-                                            {vehicles.name}
+                                            {vehicles.name} <span>Ver mais</span>
                                         </Link>
                                     );
                                 })}
@@ -193,13 +192,11 @@ const Character: React.FC = () => {
                         }
                         {character.starships.length > 0 &&
                             <ContentList>
-                                <div>
-                                    <span>Naves:</span>
-                                </div>
+                                <span>Naves:</span>
                                 {character.starships.map((starships, index) => {
                                     return (
                                         <Link to={`/character/starship/${index}`} key={starships.name}>
-                                            {starships.name}
+                                            {starships.name} <span>Ver mais</span>
                                         </Link>
                                     );
                                 })}
