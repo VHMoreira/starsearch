@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import { Container } from './styles';
+import { Container, SingleContent } from './styles';
 import { useParams } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
 import { Content } from './styles';
@@ -34,36 +34,36 @@ const Vehicle: React.FC = () => {
                 <h1>{vehicle.name}</h1>
             </header>
             <Content>
-                <section>
+                <SingleContent>
                     <span>Modelo:</span> {vehicle.model}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Montadora:</span> {vehicle.manufacturer}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Preço:</span> {vehicle.cost_in_credits}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Tamanho:</span> {vehicle.length} m
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Velocidade máxima:</span> {vehicle.max_atmosphering_speed} Km/h
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Equipe:</span> {vehicle.crew}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Passageiros:</span> {vehicle.passengers}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Capacidade de carga:</span> {vehicle.cargo_capacity}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Consumo:</span> {vehicle.consumables}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Classe do veiculo:</span> {vehicle.vehicle_class}
-                </section>
+                </SingleContent>
             </Content>
         </Container>
     );
