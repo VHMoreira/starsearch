@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { Container, Content } from './styles';
+import { Container, Content, ContentList } from './styles';
 import { useCharacter } from '../../hooks/Character';
 import axios from 'axios';
 import { useLocation, Link } from 'react-router-dom';
@@ -97,57 +97,67 @@ const Character: React.FC = () => {
                         <h1>{character.name}</h1>
                     </header>
                     <Content>
-                        <div>
+                        <section>
                             <span>Altura:</span> {character.height} cm
-                </div>
-                        <div>
+                        </section>
+                        <section>
                             <span>Peso:</span> {character.mass} Kg
-                </div>
-                        <div>
+                        </section>
+                        <section>
                             <span>Cor do cabelo:</span> {character.hair_color}
-                        </div>
-                        <div>
+                        </section>
+                        <section>
                             <span>Cor dos olhos:</span> {character.eye_color}
-                        </div>
-                        <div>
+                        </section>
+                        <section>
                             <span>Ano de nascimento:</span> {character.birth_year}
-                        </div>
-                        <div>
+                        </section>
+                        <section>
                             <span>Gênero:</span> {character.gender}
-                        </div>
-                        <div>
+                        </section>
+                        <section>
                             <span>Planeta natal:</span> {character.homeworld}
-                        </div>
-                        <div>
-                            <span>Filmes:</span>
-                        </div>
-                        {character.films.map((film, index) => {
-                            return (
-                                <Link to={`/character/film/${index}`} key={film.title}>
-                                    {film.title}
-                                </Link>
-                            );
-                        })}
-                        <div>
-                            <span>Veiculos:</span>
-                        </div>
-                        {character.vehicles.map((vehicles) => {
-                            return (
-                                <div key={vehicles.name}>
-                                    {vehicles.name}
+                        </section>
+                        <ContentList>
+                            <div>
+                                <span>Filmes:</span>
+                            </div>
+                            {character.films.map((film, index) => {
+                                return (
+                                    <Link to={`/character/film/${index}`} key={film.title}>
+                                        {film.title}
+                                    </Link>
+                                );
+                            })}
+                        </ContentList>
+                        {character.vehicles.length > 0 &&
+                            <ContentList>
+                                <div>
+                                    <span>Veiculos:</span>
                                 </div>
-                            );
-                        })}
-                        <div>
-                            <span>Naves:</span>
-                        </div>
-                        {character.starships.map((starships) => {
-                            return (
-                                <div key={starships.name}>
-                                    {starships.name}
+                                {character.vehicles.map((vehicles) => {
+                                    return (
+                                        <div key={vehicles.name}>
+                                            {vehicles.name}
+                                        </div>
+                                    );
+                                })}
+                            </ContentList>
+                        }
+                        {character.starships.length > 0 &&
+                            <ContentList>
+                                <div>
+                                    <span>Naves:</span>
                                 </div>
-                            );
-                        })}
+                                {character.starships.map((starships) => {
+                                    return (
+                                        <div key={starships.name}>
+                                            {starships.name}
+                                        </div>
+                                    );
+                                })}
+                            </ContentList>
+                        }
                     </Content>
                 </>}
         </Container>
