@@ -18,8 +18,11 @@ export default createGlobalStyle`
         font-family: 'Ubuntu', serif;
         font-size: 16px;
     }
-    h1, h2, h3, h4, h5, h6, strong{
+    h1{
         font-weight: 700;
+    }
+    h1, span{
+        cursor: default;
     }
     a{
         text-decoration: none;
