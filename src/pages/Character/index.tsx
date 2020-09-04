@@ -36,6 +36,16 @@ interface Film {
 interface Vehicle {
     name: string;
     url: string;
+    model: string;
+    manufacturer: string;
+    cost_in_credits: string;
+    max_atmosphering_speed: string;
+    crew: string;
+    passengers: string;
+    cargo_capacity: string;
+    consumables: string;
+    vehicle_class: string;
+    length: string;
 }
 
 interface Starship {
@@ -135,11 +145,11 @@ const Character: React.FC = () => {
                                 <div>
                                     <span>Veiculos:</span>
                                 </div>
-                                {character.vehicles.map((vehicles) => {
+                                {character.vehicles.map((vehicles, index) => {
                                     return (
-                                        <div key={vehicles.name}>
+                                        <Link to={`/character/vehicle/${index}`} key={vehicles.name}>
                                             {vehicles.name}
-                                        </div>
+                                        </Link>
                                     );
                                 })}
                             </ContentList>

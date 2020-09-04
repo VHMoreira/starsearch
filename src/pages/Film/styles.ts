@@ -24,44 +24,28 @@ export const Container = styled.div`
 export const Content = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 40px;
-    margin-top: 50px;
+    padding: 0 40px;
 
-    span{
-        text-align: left;
-        color: yellow;
-        font-weight: 500;
-    }
-
-    input{
-        margin-top: 20px;
-        padding: 10px;
-        border: 1px solid gray;
-        width: 100%;
-
-        &:focus{
-            border: 1px solid yellow;
+    section{
+        padding:5px 0;
+        
+        span{
+            text-align: left;
+            color: yellow;
+            font-weight: 500;
         }
-    }
 
-    button{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 20px;
-        background: yellow;
-        padding: 10px;
-        border: transparent;
-        border-radius: 10px;
-
-        svg{
-            margin-right: 10px;
+        div{
+            display: flex;
+            flex-direction: column;
         }
     }
 `;
 
-export const AutoCompleteOption = styled.div`
-    padding: 10px;
-    color: black;
-    background: white;
+export const OpeningCrawlText = styled.section`
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    line-height: 20px;
+    
 `;

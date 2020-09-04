@@ -9,6 +9,7 @@ export default createGlobalStyle`
     }
     body{
         background: #312E38;
+        background-image: url('https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-25.jpg');
         color: #FFF;
         -webkit-font-smoothing: antialiased;
     }

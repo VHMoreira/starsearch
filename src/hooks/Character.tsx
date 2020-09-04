@@ -12,6 +12,16 @@ interface Film {
 interface Vehicle {
     name: string;
     url: string;
+    model: string;
+    manufacturer: string;
+    cost_in_credits: string;
+    max_atmosphering_speed: string;
+    crew: string;
+    passengers: string;
+    cargo_capacity: string;
+    consumables: string;
+    vehicle_class: string;
+    length: string;
 }
 
 interface Starship {

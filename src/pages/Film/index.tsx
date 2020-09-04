@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import { Container } from './styles';
+import { Container, Content, OpeningCrawlText } from './styles';
 import { useParams } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
 
@@ -26,6 +26,21 @@ const Film: React.FC = () => {
             <header>
                 <h1>{film.title}</h1>
             </header>
+            <Content>
+                <section>
+                    <span>Diretor:</span> {film.director}
+                </section>
+                <section>
+                    <span>Produtor:</span> {film.producer}
+                </section>
+                <section>
+                    <span>Data de lançamento:</span> {film.release_date}
+                </section>
+                <OpeningCrawlText>
+                    <span>Texto de abertura:</span>
+                    {film.opening_crawl}
+                </OpeningCrawlText>
+            </Content>
         </Container>
     );
 };
