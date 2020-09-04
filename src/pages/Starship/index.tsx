@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import { Container } from './styles';
+import { Container, SingleContent } from './styles';
 import { useParams } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
 import { Content } from './styles';
@@ -36,42 +36,42 @@ const Starship: React.FC = () => {
                 <h1>{starship.name}</h1>
             </header>
             <Content>
-                <section>
+                <SingleContent>
                     <span>Modelo:</span> {starship.model}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Montadora:</span> {starship.manufacturer}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Preço:</span> {starship.cost_in_credits}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Tamanho:</span> {starship.length} m
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Velocidade máxima:</span> {starship.max_atmosphering_speed} Km/h
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Equipe:</span> {starship.crew}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Passageiros:</span> {starship.passengers}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Capacidade de carga:</span> {starship.cargo_capacity}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Consumo:</span> {starship.consumables}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Taxa de Hyperdrive:</span> {starship.hyperdrive_rating}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>MGLT:</span> {starship.MGLT}
-                </section>
-                <section>
+                </SingleContent>
+                <SingleContent>
                     <span>Classe da nave:</span> {starship.starship_class}
-                </section>
+                </SingleContent>
             </Content>
         </Container>
     );
