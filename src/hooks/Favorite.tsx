@@ -82,7 +82,7 @@ const FavoriteProvider: React.FC = ({ children }) => {
     }, [favorites]);
 
     const removeFavorite = useCallback((character: ICharacter) => {
-        const filteredFavorites = favorites.filter(favorite => favorite.name === character.name);
+        const filteredFavorites = favorites.filter(favorite => favorite.name !== character.name);
 
         localStorage.setItem('@StarSearch:favorites', JSON.stringify(filteredFavorites));
         setFavorites(filteredFavorites);
