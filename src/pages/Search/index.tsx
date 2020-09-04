@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import Autocomplete from 'react-autocomplete';
@@ -26,30 +26,45 @@ interface ICharacter {
 const Search: React.FC = () => {
     const [selectedCharacterName, setSelectedCharacterName] = useState('');
     const [autocompleteOptions, setAutocompleteOptions] = useState<ICharacter[]>([]);
+    const [selectedCharacter, setSelectedCharacter] = useState<ICharacter>();
+    const { clearCharacter } = useCharacter();
     const [timeOutID, setTimeOutId] = useState(0);
     const history = useHistory();
-    const { character, alterCharacter } = useCharacter();
 
-    const handleAutoCompleteOptions = useCallback(async (name: string) => {
-        clearTimeout(timeOutID);
-        const timerId = setTimeout(async () => {
-            const response = await swapi.get(`/people/?search=${name}`);
-            setAutocompleteOptions(response.data.results);
-        }, 1500);
-        setTimeOutId(timerId);
+    useEffect(() => {
+        clearCharacter();
+    }, [clearCharacter]);
+
+    useEffect(() => {
+        async function loadAutoCompleteOptions() {
+            clearTimeout(timeOutID);
+            const timerId = setTimeout(async () => {
+                const response = await swapi.get(`/people/?search=${selectedCharacterName}`);
+                setAutocompleteOptions(response.data.results);
+                console.log(response.data.results);
+            }, 500);
+            setTimeOutId(timerId);
+        }
+
+        loadAutoCompleteOptions();
+    }, [selectedCharacterName]);
+
+    const handleAutoCompleteOptions = useCallback((name: string) => {
         setSelectedCharacterName(name);
-    }, [timeOutID]);
+    }, []);
 
     const handleCharacterSelection = useCallback((character: ICharacter) => {
-        alterCharacter(character);
+        setSelectedCharacter(character);
         setSelectedCharacterName(character.name);
-    }, [alterCharacter]);
+    }, []);
 
     const handleSearchCharacter = useCallback(() => {
-        if (character) {
-            history.push('/character');
+        if (selectedCharacter) {
+            history.push('/character', {
+                character: selectedCharacter
+            });
         }
-    }, [history, character]);
+    }, [history, selectedCharacter]);
 
     return (
         <Container>
