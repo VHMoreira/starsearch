@@ -2,11 +2,12 @@ import React, { useState, useCallback, useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import Autocomplete from 'react-autocomplete';
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiArrowDown, FiArrowUp, FiArrowRight } from "react-icons/fi";
 
 import { Container, Content, AutoCompleteOption } from './styles';
 import swapi from '../../services/swapi';
 import { useCharacter } from '../../hooks/Character';
+import { useFavorite } from '../../hooks/Favorite';
 
 interface ICharacter {
     name: string;
@@ -23,11 +24,69 @@ interface ICharacter {
     starships: string[];
 }
 
+interface Film {
+    title: string;
+    url: string;
+    opening_crawl: string;
+    director: string;
+    producer: string;
+    release_date: string;
+}
+
+interface Vehicle {
+    name: string;
+    url: string;
+    model: string;
+    manufacturer: string;
+    cost_in_credits: string;
+    max_atmosphering_speed: string;
+    crew: string;
+    passengers: string;
+    cargo_capacity: string;
+    consumables: string;
+    vehicle_class: string;
+    length: string;
+}
+
+interface Starship {
+    name: string;
+    url: string;
+    model: string;
+    manufacturer: string;
+    cost_in_credits: string;
+    max_atmosphering_speed: string;
+    crew: string;
+    passengers: string;
+    cargo_capacity: string;
+    consumables: string;
+    starship_class: string;
+    MGLT: string;
+    length: string;
+    hyperdrive_rating: string;
+}
+
+interface ICharacterFavorite {
+    name: string;
+    height: string;
+    mass: string;
+    hair_color: string;
+    skin_color: string;
+    eye_color: string;
+    birth_year: string;
+    gender: string;
+    homeworld: string;
+    films: Film[];
+    vehicles: Vehicle[];
+    starships: Starship[];
+}
+
 const Search: React.FC = () => {
     const [selectedCharacterName, setSelectedCharacterName] = useState('');
     const [autocompleteOptions, setAutocompleteOptions] = useState<ICharacter[]>([]);
     const [selectedCharacter, setSelectedCharacter] = useState<ICharacter>();
     const { clearCharacter } = useCharacter();
+    const { favorites } = useFavorite();
+    const [showFavoritesList, setShowFavoritesList] = useState(false);
     const [timeOutID, setTimeOutId] = useState(0);
     const history = useHistory();
 
@@ -58,6 +117,12 @@ const Search: React.FC = () => {
         setSelectedCharacterName(character.name);
     }, []);
 
+    const handleSearchFavorite = useCallback((character: ICharacterFavorite) => {
+        history.push('/character', {
+            character
+        });
+    }, [history]);
+
     const handleSearchCharacter = useCallback(() => {
         if (selectedCharacter) {
             history.push('/character', {
@@ -65,6 +130,10 @@ const Search: React.FC = () => {
             });
         }
     }, [history, selectedCharacter]);
+
+    const handleToogleShowFavoritesList = useCallback(() => {
+        setShowFavoritesList(!showFavoritesList);
+    }, [showFavoritesList]);
 
     return (
         <Container>
@@ -93,8 +162,24 @@ const Search: React.FC = () => {
                 <button onClick={handleSearchCharacter}>
                     <FiSearch /> Pesquisar
                 </button>
+
+                <span onClick={handleToogleShowFavoritesList}>
+                    Ver favoritos {showFavoritesList ? <FiArrowUp /> : <FiArrowDown />}
+                </span>
+
+                {showFavoritesList &&
+                    <section>
+                        {favorites.map((favorite) => (
+                            <div onClick={() => handleSearchFavorite(favorite)}>
+                                <span>{favorite.name}</span>
+                                <FiArrowRight size={20} />
+                            </div>
+                        ))}
+                    </section>
+                }
             </Content>
-        </Container>
+
+        </Container >
     );
 };
 

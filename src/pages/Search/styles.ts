@@ -58,6 +58,37 @@ export const Content = styled.div`
             margin-right: 10px;
         }
     }
+
+    button + span{
+        margin: 10px 0;
+        font-weight: 400;
+        font-size: 15px;
+        cursor: pointer;
+
+        svg{
+            margin: auto;
+        }
+    }
+
+    section{
+
+        div{
+            background: rgba(56, 56, 56, 0.84);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            cursor: pointer;
+
+            span{
+                cursor: pointer;
+            }
+
+            & + div{
+                margin-top: 2px;
+            }
+        }
+    }
 `;
 
 export const AutoCompleteOption = styled.div`
