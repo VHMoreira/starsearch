@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import background from '../assets/background.jpg'
 
 export default createGlobalStyle`
     * {
@@ -9,7 +10,7 @@ export default createGlobalStyle`
     }
     body{
         background: #312E38;
-        background-image: url('https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-25.jpg');
+        background-image: url(${background});
         color: #FFF;
         -webkit-font-smoothing: antialiased;
     }

@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { Container } from './styles';
 import { useParams } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
-import { Content } from '../Search/styles';
+import { Content } from './styles';
 
 interface Vehicle {
     name: string;
@@ -42,6 +42,9 @@ const Vehicle: React.FC = () => {
                 </section>
                 <section>
                     <span>Preço:</span> {vehicle.cost_in_credits}
+                </section>
+                <section>
+                    <span>Tamanho:</span> {vehicle.length} m
                 </section>
                 <section>
                     <span>Velocidade máxima:</span> {vehicle.max_atmosphering_speed} Km/h

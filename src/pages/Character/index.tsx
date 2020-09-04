@@ -51,6 +51,18 @@ interface Vehicle {
 interface Starship {
     name: string;
     url: string;
+    model: string;
+    manufacturer: string;
+    cost_in_credits: string;
+    max_atmosphering_speed: string;
+    crew: string;
+    passengers: string;
+    cargo_capacity: string;
+    consumables: string;
+    starship_class: string;
+    MGLT: string;
+    length: string;
+    hyperdrive_rating: string;
 }
 
 interface LocationStateProps {
@@ -159,11 +171,11 @@ const Character: React.FC = () => {
                                 <div>
                                     <span>Naves:</span>
                                 </div>
-                                {character.starships.map((starships) => {
+                                {character.starships.map((starships, index) => {
                                     return (
-                                        <div key={starships.name}>
+                                        <Link to={`/character/starship/${index}`} key={starships.name}>
                                             {starships.name}
-                                        </div>
+                                        </Link>
                                     );
                                 })}
                             </ContentList>
