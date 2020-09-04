@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import { Container, Content, ContentList } from './styles';
 import { useCharacter } from '../../hooks/Character';
+
 import axios from 'axios';
 import { useLocation, Link } from 'react-router-dom';
+import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { useFavorite } from '../../hooks/Favorite';
 
 interface ICharacter {
     name: string;
@@ -70,46 +73,66 @@ interface LocationStateProps {
 }
 
 const Character: React.FC = () => {
-    const { character, alterCharacter } = useCharacter();
     const { state } = useLocation<LocationStateProps>();
+
+    const { character, alterCharacter } = useCharacter();
+    const { favorites, addNewFavorite, removeFavorite } = useFavorite();
+    const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
         async function loadCharacter() {
 
-            const { films, vehicles, starships, homeworld, ...character } = state.character;
+            const currentCharacterIsFavorite = favorites.find(favorite => favorite.name === state.character.name);
 
-            const filmsUrls = films.map((film) => {
-                return axios.get<Film>(film);
-            });
+            if (currentCharacterIsFavorite) {
+                setIsFavorite(true);
+                alterCharacter(currentCharacterIsFavorite);
+            } else {
+                const { films, vehicles, starships, homeworld, ...character } = state.character;
 
-            const vehiclesUrls = vehicles.map((vehicle) => {
-                return axios.get<Vehicle>(vehicle);
-            });
+                const filmsUrls = films.map((film) => {
+                    return axios.get<Film>(film);
+                });
 
-            const starshipsUrls = starships.map((starship) => {
-                return axios.get<Starship>(starship);
-            });
+                const vehiclesUrls = vehicles.map((vehicle) => {
+                    return axios.get<Vehicle>(vehicle);
+                });
 
-            const responseHomeworld = await axios.get<HomeWorld>(homeworld);
+                const starshipsUrls = starships.map((starship) => {
+                    return axios.get<Starship>(starship);
+                });
 
-            const responsesFilms = await Promise.all(filmsUrls);
-            const responsesVehicles = await Promise.all(vehiclesUrls);
-            const responsesStarships = await Promise.all(starshipsUrls);
+                const responseHomeworld = await axios.get<HomeWorld>(homeworld);
 
-            alterCharacter({
-                ...character,
-                homeworld: responseHomeworld.data.name,
-                films: responsesFilms.map(response => response.data),
-                vehicles: responsesVehicles.map(response => response.data),
-                starships: responsesStarships.map(response => response.data)
-            });
+                const responsesFilms = await Promise.all(filmsUrls);
+                const responsesVehicles = await Promise.all(vehiclesUrls);
+                const responsesStarships = await Promise.all(starshipsUrls);
+
+                alterCharacter({
+                    ...character,
+                    homeworld: responseHomeworld.data.name,
+                    films: responsesFilms.map(response => response.data),
+                    vehicles: responsesVehicles.map(response => response.data),
+                    starships: responsesStarships.map(response => response.data)
+                });
+            }
 
             console.log(character);
         }
 
         loadCharacter();
 
-    }, [state.character, alterCharacter]);
+    }, [state.character, alterCharacter, favorites]);
+
+    const handleToggleFavorite = useCallback(() => {
+        if (isFavorite) {
+            removeFavorite(character);
+            setIsFavorite(false);
+        } else {
+            addNewFavorite(character);
+            setIsFavorite(true);
+        }
+    }, [isFavorite, character]);
 
     return (
         <Container>
@@ -117,6 +140,8 @@ const Character: React.FC = () => {
                 <>
                     <header>
                         <h1>{character.name}</h1>
+
+                        {isFavorite ? <AiFillStar size={30} onClick={handleToggleFavorite} /> : <AiOutlineStar size={30} onClick={handleToggleFavorite} />}
                     </header>
                     <Content>
                         <section>

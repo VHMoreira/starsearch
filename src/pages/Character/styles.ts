@@ -17,6 +17,14 @@ export const Container = styled.div`
             -webkit-text-stroke-width: 2px;
             -webkit-text-stroke-color: yellow;
         }
+
+        svg{
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin: 20px;
+            color: yellow;
+        }
     }
     
 `;
