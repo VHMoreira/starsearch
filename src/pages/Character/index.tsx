@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
 import { Container, Content, ContentList, SingleContent } from './styles';
+import Header from '../../shared/components/Header';
 import { useCharacter } from '../../hooks/Character';
 
 import axios from 'axios';
@@ -149,13 +150,13 @@ const Character: React.FC = () => {
         <Container>
             {character &&
                 <>
-                    <header>
+                    <Header>
                         <div>
                             <FiArrowLeft size={30} onClick={history.goBack} />
                             {isFavorite ? <AiFillStar size={30} onClick={handleToggleFavorite} /> : <AiOutlineStar size={30} onClick={handleToggleFavorite} />}
                         </div>
                         <h1>{character.name}</h1>
-                    </header>
+                    </Header>
                     <Content>
                         <SingleContent>
                             <span>Altura:</span> {character.height} cm

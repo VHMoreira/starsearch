@@ -5,6 +5,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
 import { Content } from './styles';
 import { FiArrowLeft } from 'react-icons/fi';
+import Header from '../../shared/components/Header';
 
 interface Starship {
     name: string;
@@ -70,12 +71,12 @@ const Starship: React.FC = () => {
         <Container>
             {starship &&
                 <>
-                    <header>
+                    <Header>
                         <div>
                             <FiArrowLeft size={30} onClick={history.goBack} />
                         </div>
                         <h1>{starship.name}</h1>
-                    </header>
+                    </Header>
                     <Content>
                         <SingleContent>
                             <span>Modelo:</span> {starship.model}

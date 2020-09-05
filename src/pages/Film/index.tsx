@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import Header from '../../shared/components/Header';
 import { Container, Content, OpeningCrawlText, SingleContent, ContentList } from './styles';
 import { useParams, useHistory } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
@@ -97,12 +98,12 @@ const Film: React.FC = () => {
         <Container>
             {film &&
                 <>
-                    <header>
+                    <Header>
                         <div>
                             <FiArrowLeft size={30} onClick={history.goBack} />
                         </div>
                         <h1>{film?.title}</h1>
-                    </header>
+                    </Header>
                     <Content>
                         <SingleContent>
                             <span>Diretor:</span> {film.director}
