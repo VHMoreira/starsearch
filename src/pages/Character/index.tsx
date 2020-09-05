@@ -73,6 +73,7 @@ interface Starship {
     length: string;
     hyperdrive_rating: string;
     films: string[];
+    pilots: string[];
 }
 
 interface LocationStateProps {

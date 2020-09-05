@@ -22,10 +22,15 @@ interface Starship {
     length: string;
     hyperdrive_rating: string;
     films: string[];
+    pilots: string[];
 }
 
 interface Film {
     title: string;
+}
+
+interface Pilot {
+    name: string;
 }
 
 const Starship: React.FC = () => {
@@ -34,21 +39,28 @@ const Starship: React.FC = () => {
     const { character } = useCharacter();
     const [starship, setStarship] = useState<Starship>();
     const [films, setFilms] = useState<Film[]>([]);
+    const [pilots, setPilots] = useState<Pilot[]>([]);
 
     useEffect(() => {
         async function loadFilm() {
             const currentsStarship = character.starships[starshipIndex];
 
-            const { films } = currentsStarship;
+            const { films, pilots } = currentsStarship;
 
             const filmsUrls = films.map((film) => {
                 return axios.get<Film>(film);
             });
 
+            const pilotsUrls = pilots.map((pilot) => {
+                return axios.get<Pilot>(pilot);
+            });
+
             const responsesFilms = await Promise.all(filmsUrls);
+            const responsesPilots = await Promise.all(pilotsUrls);
 
             setStarship(currentsStarship);
             setFilms(responsesFilms.map(response => response.data));
+            setPilots(responsesPilots.map(response => response.data));
         }
 
         loadFilm();
@@ -101,6 +113,18 @@ const Starship: React.FC = () => {
                         <SingleContent>
                             <span>Classe da nave:</span> {starship.starship_class}
                         </SingleContent>
+                        {pilots &&
+                            <ContentList>
+                                <span>Pilotos:</span>
+                                {pilots.map((pilots) => {
+                                    return (
+                                        <section>
+                                            {pilots.name}
+                                        </section>
+                                    );
+                                })}
+                            </ContentList>
+                        }
                         <ContentList>
                             <span>Filmes:</span>
                             {films.map((film) => {
