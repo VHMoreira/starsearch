@@ -71,5 +71,19 @@ export const OpeningCrawlText = styled.section`
     flex-direction: column;
     text-align: justify;
     line-height: 25px;
-    
+    border-bottom: 1px solid grey;
+`;
+
+export const ContentList = styled.section`
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid grey;
+
+    span{
+        text-align: left;
+        color: yellow;
+        font-weight: 500;
+        margin: 5px 0;
+    }
 `;

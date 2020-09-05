@@ -7,6 +7,11 @@ interface Film {
     director: string;
     producer: string;
     release_date: string;
+    characters: string[]
+    vehicles: string[];
+    starships: string[];
+    planets: string[];
+    species: string[];
 }
 
 interface Vehicle {
