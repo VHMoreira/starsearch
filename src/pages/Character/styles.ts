@@ -78,5 +78,9 @@ export const ContentList = styled.section`
         font-weight: 400;
         justify-content: space-between;
         border-bottom: 1px solid grey;
+
+        span{
+            cursor: pointer;
+        }
     }
 `;
