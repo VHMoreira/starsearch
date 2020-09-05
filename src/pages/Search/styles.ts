@@ -61,12 +61,16 @@ export const Content = styled.div`
 
     button + span{
         margin: 10px 0;
+        max-width: 125px;
         font-weight: 400;
         font-size: 15px;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
         svg{
-            margin: auto;
+            margin: auto 10px;
         }
     }
 
