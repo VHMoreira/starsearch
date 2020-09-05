@@ -42,7 +42,7 @@ const Starship: React.FC = () => {
     const [pilots, setPilots] = useState<Pilot[]>([]);
 
     useEffect(() => {
-        async function loadFilm() {
+        async function loadStarship() {
             const currentsStarship = character.starships[starshipIndex];
 
             const { films, pilots } = currentsStarship;
@@ -63,7 +63,7 @@ const Starship: React.FC = () => {
             setPilots(responsesPilots.map(response => response.data));
         }
 
-        loadFilm();
+        loadStarship();
     }, [starshipIndex]);
 
     return (

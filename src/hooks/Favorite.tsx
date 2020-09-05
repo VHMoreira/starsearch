@@ -27,6 +27,8 @@ interface Vehicle {
     consumables: string;
     vehicle_class: string;
     length: string;
+    films: string[];
+    pilots: string[];
 }
 
 interface Starship {
