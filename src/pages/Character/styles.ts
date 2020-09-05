@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100vh;
 
     >header{
@@ -10,6 +11,8 @@ export const Container = styled.div`
         flex-direction: column;
         height: 120px;
         padding: 20px 0;
+        width: 100%;
+        max-width: 800px;
 
         h1{
             text-align: center;
@@ -39,6 +42,8 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0 40px;
+    width: 100%;
+    max-width: 700px;
 `;
 
 export const SingleContent = styled.section`

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100vh;
 
     >header{
@@ -24,8 +25,10 @@ export const Container = styled.div`
 export const Content = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
     padding: 40px;
     margin-top: 50px;
+    max-width: 700px;
 
     span{
         text-align: left;
