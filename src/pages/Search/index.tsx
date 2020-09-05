@@ -7,6 +7,7 @@ import { FiSearch, FiArrowDown, FiArrowUp, FiArrowRight } from "react-icons/fi";
 import { Container, Content, AutoCompleteOption } from './styles';
 import swapi from '../../services/swapi';
 import { useFavorite } from '../../hooks/Favorite';
+import { useCharacter } from '../../hooks/Character';
 
 interface ICharacter {
     name: string;
@@ -84,6 +85,7 @@ const Search: React.FC = () => {
     const [autocompleteOptions, setAutocompleteOptions] = useState<ICharacter[]>([]);
     const [selectedCharacter, setSelectedCharacter] = useState<ICharacter>();
     const { favorites } = useFavorite();
+    const { clearCharacter } = useCharacter();
     const [showFavoritesList, setShowFavoritesList] = useState(false);
     const [timeOutID, setTimeOutId] = useState(0);
     const history = useHistory();
@@ -112,12 +114,14 @@ const Search: React.FC = () => {
     }, []);
 
     const handleSearchFavorite = useCallback((character: ICharacterFavorite) => {
+        clearCharacter();
         history.push('/character', {
             character
         });
     }, [history]);
 
     const handleSearchCharacter = useCallback(() => {
+        clearCharacter();
         if (selectedCharacter) {
             history.push('/character', {
                 character: selectedCharacter
