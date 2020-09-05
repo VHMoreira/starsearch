@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 
 import { Container, Content, OpeningCrawlText, SingleContent } from './styles';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
+import { FiArrowLeft } from 'react-icons/fi';
 
 interface Film {
     title: string;
@@ -15,6 +16,7 @@ interface Film {
 
 const Film: React.FC = () => {
     const { filmIndex } = useParams();
+    const history = useHistory();
     const { character } = useCharacter();
 
     const film = useMemo<Film>(() => {
@@ -24,6 +26,9 @@ const Film: React.FC = () => {
     return (
         <Container>
             <header>
+                <div>
+                    <FiArrowLeft size={30} onClick={history.goBack} />
+                </div>
                 <h1>{film.title}</h1>
             </header>
             <Content>

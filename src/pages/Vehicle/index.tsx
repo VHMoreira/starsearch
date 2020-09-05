@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
 
 import { Container, SingleContent } from './styles';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
 import { Content } from './styles';
+import { FiArrowLeft } from 'react-icons/fi';
 
 interface Vehicle {
     name: string;
@@ -22,6 +23,7 @@ interface Vehicle {
 
 const Vehicle: React.FC = () => {
     const { vehicleIndex } = useParams();
+    const history = useHistory();
     const { character } = useCharacter();
 
     const vehicle = useMemo<Vehicle>(() => {
@@ -31,6 +33,9 @@ const Vehicle: React.FC = () => {
     return (
         <Container>
             <header>
+                <div>
+                    <FiArrowLeft size={30} onClick={history.goBack} />
+                </div>
                 <h1>{vehicle.name}</h1>
             </header>
             <Content>

@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
 
 import { Container, SingleContent } from './styles';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
 import { Content } from './styles';
+import { FiArrowLeft } from 'react-icons/fi';
 
 interface Starship {
     name: string;
@@ -24,6 +25,7 @@ interface Starship {
 
 const Starship: React.FC = () => {
     const { starshipIndex } = useParams();
+    const history = useHistory();
     const { character } = useCharacter();
 
     const starship = useMemo<Starship>(() => {
@@ -33,6 +35,9 @@ const Starship: React.FC = () => {
     return (
         <Container>
             <header>
+                <div>
+                    <FiArrowLeft size={30} onClick={history.goBack} />
+                </div>
                 <h1>{starship.name}</h1>
             </header>
             <Content>

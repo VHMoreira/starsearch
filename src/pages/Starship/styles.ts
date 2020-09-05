@@ -4,11 +4,11 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     height: 100vh;
+    padding: 20px 0;
 
     >header{
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
         height: 120px;
 
         h1{
@@ -16,6 +16,16 @@ export const Container = styled.div`
             -webkit-text-fill-color: black;
             -webkit-text-stroke-width: 2px;
             -webkit-text-stroke-color: yellow;
+        }
+
+        div{
+            display:flex;
+            justify-content: flex-start;
+            padding: 5px 20px;
+
+            svg{
+                cursor: pointer;
+            }
         }
     }
     

@@ -4,9 +4,10 @@ import { Container, Content, ContentList, SingleContent } from './styles';
 import { useCharacter } from '../../hooks/Character';
 
 import axios from 'axios';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useHistory } from 'react-router-dom';
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { useFavorite } from '../../hooks/Favorite';
+import { FiArrowLeft } from 'react-icons/fi';
 
 interface ICharacter {
     name: string;
@@ -78,6 +79,7 @@ const Character: React.FC = () => {
     const { character, alterCharacter } = useCharacter();
     const { favorites, addNewFavorite, removeFavorite } = useFavorite();
     const [isFavorite, setIsFavorite] = useState(false);
+    const history = useHistory();
 
     useEffect(() => {
         async function loadCharacter() {
@@ -139,9 +141,11 @@ const Character: React.FC = () => {
             {character &&
                 <>
                     <header>
+                        <div>
+                            <FiArrowLeft size={30} onClick={history.goBack} />
+                            {isFavorite ? <AiFillStar size={30} onClick={handleToggleFavorite} /> : <AiOutlineStar size={30} onClick={handleToggleFavorite} />}
+                        </div>
                         <h1>{character.name}</h1>
-
-                        {isFavorite ? <AiFillStar size={30} onClick={handleToggleFavorite} /> : <AiOutlineStar size={30} onClick={handleToggleFavorite} />}
                     </header>
                     <Content>
                         <SingleContent>

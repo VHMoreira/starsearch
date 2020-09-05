@@ -7,9 +7,9 @@ export const Container = styled.div`
 
     >header{
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
         height: 120px;
+        padding: 20px 0;
 
         h1{
             text-align: center;
@@ -18,12 +18,18 @@ export const Container = styled.div`
             -webkit-text-stroke-color: yellow;
         }
 
-        svg{
-            position: absolute;
-            right: 0;
-            top: 0;
-            margin: 20px;
-            color: yellow;
+        div{
+            display:flex;
+            justify-content: space-between;
+            padding: 5px 20px;
+
+            svg{
+                cursor: pointer;
+            }
+
+            svg + svg {
+                color: yellow;
+            }
         }
     }
     
