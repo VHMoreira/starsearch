@@ -44,6 +44,7 @@ interface Starship {
     MGLT: string;
     length: string;
     hyperdrive_rating: string;
+    films: string[];
 }
 
 interface ICharacter {

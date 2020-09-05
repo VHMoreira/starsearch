@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { Container, Content, OpeningCrawlText, SingleContent, ContentList } from './styles';
 import { useParams, useHistory } from 'react-router-dom';
