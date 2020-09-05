@@ -10,13 +10,14 @@ export const Container = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 120px;
+        margin-top: 80px;
 
         h1{
             text-align: center;
             -webkit-text-fill-color: black;
             -webkit-text-stroke-width: 2px;
             -webkit-text-stroke-color: yellow;
+            font-size: 40px;
         }
     }
     

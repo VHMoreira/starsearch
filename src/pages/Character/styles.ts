@@ -5,17 +5,18 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    padding: 20px;
 
     >header{
         display: flex;
         flex-direction: column;
-        height: 120px;
-        padding: 20px 0;
         width: 100%;
         max-width: 800px;
 
         h1{
+            padding: 20px;
             text-align: center;
+            line-height: 40px;
             -webkit-text-fill-color: black;
             -webkit-text-stroke-width: 2px;
             -webkit-text-stroke-color: yellow;
@@ -24,15 +25,15 @@ export const Container = styled.div`
         div{
             display:flex;
             justify-content: space-between;
-            padding: 5px 20px;
 
             svg{
                 cursor: pointer;
-            }
 
-            svg + svg {
-                color: yellow;
+                & + svg{
+                    color: yellow;
+                }
             }
+            
         }
     }
     
@@ -41,7 +42,7 @@ export const Container = styled.div`
 export const Content = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0 40px;
+    padding: 0 20px;
     width: 100%;
     max-width: 700px;
 `;
