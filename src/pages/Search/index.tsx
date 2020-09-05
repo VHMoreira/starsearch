@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Autocomplete from 'react-autocomplete';
 import { FiSearch, FiArrowDown, FiArrowUp, FiArrowRight } from "react-icons/fi";
 
-import { Container, Content, AutoCompleteOption } from './styles';
+import { Container, Content, AutoCompleteOption, AutoCompleteOptionContainer } from './styles';
 import swapi from '../../services/swapi';
 import { useFavorite } from '../../hooks/Favorite';
 import { useCharacter } from '../../hooks/Character';
@@ -165,6 +165,11 @@ const Search: React.FC = () => {
                     value={selectedCharacterName}
                     onChange={({ target }) => handleAutoCompleteOptions(target.value)}
                     onSelect={(_, item) => handleCharacterSelection(item)}
+                    renderMenu={children =>
+                        <AutoCompleteOptionContainer>
+                            {children}
+                        </AutoCompleteOptionContainer>
+                    }
                 />
                 <button onClick={handleSearchCharacter}>
                     <FiSearch /> Pesquisar

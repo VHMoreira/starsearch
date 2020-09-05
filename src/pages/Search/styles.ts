@@ -30,6 +30,7 @@ export const Content = styled.div`
     padding: 40px;
     margin-top: 50px;
     max-width: 700px;
+    position: relative;
 
     span{
         text-align: left;
@@ -37,15 +38,18 @@ export const Content = styled.div`
         font-weight: 500;
     }
 
-    input{
-        margin-top: 20px;
-        padding: 10px;
-        border: 1px solid gray;
-        width: 100%;
+    div{
+        input{
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid gray;
+            width: 100%;
 
-        &:focus{
-            border: 1px solid yellow;
+            &:focus{
+                border: 1px solid yellow;
+            }
         }
+
     }
 
     button{
@@ -103,4 +107,14 @@ export const AutoCompleteOption = styled.div`
     padding: 10px;
     color: black;
     background: white;
+    left: 0;
+    right:0;
+`;
+
+export const AutoCompleteOptionContainer = styled.div`
+    position: absolute;
+    left: 0;
+    right:0;
+    padding: 0 40px;
+    border: 0;
 `;
