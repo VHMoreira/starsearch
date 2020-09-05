@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import { Container, Content, ContentList, SingleContent } from './styles';
+import { Container, Content, ContentList } from './styles';
 import Header from '../../shared/components/Header';
 import { useCharacter } from '../../hooks/Character';
 
@@ -9,6 +9,7 @@ import { useLocation, Link, useHistory } from 'react-router-dom';
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { useFavorite } from '../../hooks/Favorite';
 import { FiArrowLeft } from 'react-icons/fi';
+import SingleContent from '../../shared/components/SingleContent';
 
 interface ICharacter {
     name: string;

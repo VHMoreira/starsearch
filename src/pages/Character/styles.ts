@@ -16,20 +16,6 @@ export const Content = styled.div`
     max-width: 700px;
 `;
 
-export const SingleContent = styled.section`
-    
-    padding:5px 0;
-    justify-content: space-between;
-    border-bottom: 1px solid grey;
-    
-    span{
-        text-align: left;
-        color: yellow;
-        font-weight: 500;
-    }
-    
-`;
-
 export const ContentList = styled.section`
     padding-top: 5px;
     display: flex;

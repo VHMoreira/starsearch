@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { Container, SingleContent, ContentList } from './styles';
+import { Container, ContentList } from './styles';
 import { useParams, useHistory } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
 import { Content } from './styles';
 import { FiArrowLeft } from 'react-icons/fi';
 import Header from '../../shared/components/Header';
+import SingleContent from '../../shared/components/SingleContent';
 
 interface Starship {
     name: string;

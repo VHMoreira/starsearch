@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import Header from '../../shared/components/Header';
-import { Container, Content, OpeningCrawlText, SingleContent, ContentList } from './styles';
+import { Container, Content, OpeningCrawlText, ContentList } from './styles';
 import { useParams, useHistory } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
 import { FiArrowLeft } from 'react-icons/fi';
+import SingleContent from '../../shared/components/SingleContent';
 
 interface Film {
     title: string;

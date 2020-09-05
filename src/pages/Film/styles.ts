@@ -26,20 +26,6 @@ export const Content = styled.div`
     }
 `;
 
-export const SingleContent = styled.section`
-    
-    padding:5px 0;
-    justify-content: space-between;
-    border-bottom: 1px solid grey;
-    
-    span{
-        text-align: left;
-        color: yellow;
-        font-weight: 500;
-    }
-    
-`;
-
 export const OpeningCrawlText = styled.section`
     display: flex;
     flex-direction: column;
