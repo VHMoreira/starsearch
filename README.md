@@ -1,44 +1,58 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center"> Star Search </h1>
 
-## Available Scripts
+<p align="center"> 
+    Uma aplicação para busca de personagens do Star Wars utilizando a Star Wars API.
+</p>
 
-In the project directory, you can run:
+## Sumario
 
-### `yarn start`
+- [Funcionalidades](#funcionalidades)
+- [Exemplo](#exemplo)
+- [Requisitos](#requisitos)
+- [Instalação](#instalação)
+- [Author](#author)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Funcionalidades
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Buscar personagem pelo nome.
+- Exibir detalhes do personagem.
+- Exibir detalhes dos filmes que o personagem participa.
+- Exibir detalhes das Naves que o personagem pilota, se houver.
+- Exibir detalhes dos veiculos que o personagem pilota, se houver.
+- Selecionar personagem como favorito.
+- Exibir lista de personagens favoritos.
 
-### `yarn test`
+## Exemplo
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Requisitos
 
-### `yarn build`
+- [Node](https://nodejs.org/en/download/)
+- [yarn](https://yarnpkg.com/)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Instalação
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+1 - Clone ou faça o download desse repositório:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> git clone https://github.com/VHMoreira/starsearch.git
 
-### `yarn eject`
+2 - Dentro da pasta starsearch, faça o download das dependências utilizando o yarn:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+> yarn
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3 - Após o download das dependências, rode o servidor:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> yarn start
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+4 - Para acessar a aplicação digite no navegador de seu computador:
 
-## Learn More
+> http://localhost:3000/
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ou o endereço de ip do seu computador na sua rede:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> http://seu.endereço.de.ip:3000/
+
+o segundo exemplo é o recomendado caso queira ver pelo navegador do celular.
+
+## Authors
+
+- [Vitor Henrique]("https://github.com/VHMoreira")
