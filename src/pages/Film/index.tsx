@@ -93,7 +93,7 @@ const Film: React.FC = () => {
         }
 
         loadFilm();
-    }, [filmIndex]);
+    }, [filmIndex, character.films]);
 
     return (
         <Container>

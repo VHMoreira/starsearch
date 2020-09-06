@@ -135,7 +135,7 @@ const Character: React.FC = () => {
 
         loadCharacter();
 
-    }, [state.character, alterCharacter, favorites]);
+    }, [state.character, alterCharacter, favorites, character]);
 
     const handleToggleFavorite = useCallback(() => {
         if (isFavorite) {
@@ -145,7 +145,7 @@ const Character: React.FC = () => {
             addNewFavorite(character);
             setIsFavorite(true);
         }
-    }, [isFavorite, character]);
+    }, [isFavorite, character, addNewFavorite, removeFavorite]);
 
     return (
         <Container>

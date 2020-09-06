@@ -65,7 +65,7 @@ const Vehicle: React.FC = () => {
         }
 
         loadVehicle();
-    }, [vehicleIndex]);
+    }, [vehicleIndex, character.vehicles]);
 
     return (
         <Container>

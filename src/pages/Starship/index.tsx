@@ -66,7 +66,7 @@ const Starship: React.FC = () => {
         }
 
         loadStarship();
-    }, [starshipIndex]);
+    }, [starshipIndex, character.starships]);
 
     return (
         <Container>

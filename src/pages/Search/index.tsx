@@ -111,6 +111,7 @@ const Search: React.FC = () => {
         }
 
         loadAutoCompleteOptions();
+        // eslint-disable-next-line
     }, [selectedCharacterName]);
 
     const handleAutoCompleteOptions = useCallback((name: string) => {
@@ -127,7 +128,7 @@ const Search: React.FC = () => {
         history.push('/character', {
             character
         });
-    }, [history]);
+    }, [history, clearCharacter]);
 
     const handleSearchCharacter = useCallback(() => {
         clearCharacter();
@@ -136,7 +137,7 @@ const Search: React.FC = () => {
                 character: selectedCharacter
             });
         }
-    }, [history, selectedCharacter]);
+    }, [history, selectedCharacter, clearCharacter]);
 
     const handleToogleShowFavoritesList = useCallback(() => {
         setShowFavoritesList(!showFavoritesList);
