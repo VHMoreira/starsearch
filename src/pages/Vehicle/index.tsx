@@ -65,7 +65,8 @@ const Vehicle: React.FC = () => {
         }
 
         loadVehicle();
-    }, [vehicleIndex, character.vehicles]);
+        // eslint-disable-next-line
+    }, [vehicleIndex]);
 
     return (
         <Container>
@@ -113,7 +114,7 @@ const Vehicle: React.FC = () => {
                                 <span>Pilotos:</span>
                                 {pilots.map((pilots) => {
                                     return (
-                                        <section>
+                                        <section key={pilots.name}>
                                             {pilots.name}
                                         </section>
                                     );
@@ -124,7 +125,7 @@ const Vehicle: React.FC = () => {
                             <span>Filmes:</span>
                             {films.map((film) => {
                                 return (
-                                    <section>
+                                    <section key={film.title}>
                                         {film.title}
                                     </section>
                                 );

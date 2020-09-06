@@ -105,7 +105,6 @@ const Search: React.FC = () => {
             const timerId = setTimeout(async () => {
                 const response = await swapi.get(`/people/?search=${selectedCharacterName}`);
                 setAutocompleteOptions(response.data.results);
-                console.log(response.data.results);
             }, 500);
             setTimeOutId(timerId);
         }

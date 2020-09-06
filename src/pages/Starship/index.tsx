@@ -66,7 +66,8 @@ const Starship: React.FC = () => {
         }
 
         loadStarship();
-    }, [starshipIndex, character.starships]);
+        // eslint-disable-next-line
+    }, [starshipIndex]);
 
     return (
         <Container>
@@ -120,7 +121,7 @@ const Starship: React.FC = () => {
                                 <span>Pilotos:</span>
                                 {pilots.map((pilots) => {
                                     return (
-                                        <section>
+                                        <section key={pilots.name}>
                                             {pilots.name}
                                         </section>
                                     );
@@ -131,7 +132,7 @@ const Starship: React.FC = () => {
                             <span>Filmes:</span>
                             {films.map((film) => {
                                 return (
-                                    <section>
+                                    <section key={film.title}>
                                         {film.title}
                                     </section>
                                 );

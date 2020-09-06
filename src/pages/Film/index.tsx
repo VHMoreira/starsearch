@@ -124,7 +124,7 @@ const Film: React.FC = () => {
                             <span>Personagens:</span>
                             {characters.map((character) => {
                                 return (
-                                    <section>
+                                    <section key={character.name}>
                                         {character.name}
                                     </section>
                                 );
@@ -135,7 +135,7 @@ const Film: React.FC = () => {
                             <span>Planetas:</span>
                             {planets.map((planet) => {
                                 return (
-                                    <section>
+                                    <section key={planet.name}>
                                         {planet.name}
                                     </section>
                                 );
@@ -146,7 +146,7 @@ const Film: React.FC = () => {
                             <span>Naves:</span>
                             {starships.map((starship) => {
                                 return (
-                                    <section>
+                                    <section key={starship.name}>
                                         {starship.name}
                                     </section>
                                 );
@@ -157,7 +157,7 @@ const Film: React.FC = () => {
                             <span>Veiculos:</span>
                             {vehicles.map((vehicle) => {
                                 return (
-                                    <section>
+                                    <section key={vehicle.name}>
                                         {vehicle.name}
                                     </section>
                                 );
@@ -168,7 +168,7 @@ const Film: React.FC = () => {
                             <span>Species:</span>
                             {species.map((specie) => {
                                 return (
-                                    <section>
+                                    <section key={specie.name}>
                                         {specie.name}
                                     </section>
                                 );

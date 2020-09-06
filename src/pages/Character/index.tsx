@@ -129,13 +129,11 @@ const Character: React.FC = () => {
                     starships: responsesStarships.map(response => response.data)
                 });
             }
-
-            console.log(character);
         }
 
         loadCharacter();
 
-    }, [state.character, alterCharacter, favorites, character]);
+    }, [state.character, alterCharacter, favorites]);
 
     const handleToggleFavorite = useCallback(() => {
         if (isFavorite) {
@@ -185,8 +183,8 @@ const Character: React.FC = () => {
                             <span>Filmes:</span>
                             {character.films.map((film, index) => {
                                 return (
-                                    <section>
-                                        <Link to={`/character/film/${index}`} key={film.title}>
+                                    <section key={film.title}>
+                                        <Link to={`/character/film/${index}`}>
                                             {film.title} <span>Ver mais</span>
                                         </Link>
                                     </section>
