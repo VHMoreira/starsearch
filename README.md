@@ -6,11 +6,14 @@
 
 ## Sumario
 
+- [Sumario](#sumario)
 - [Funcionalidades](#funcionalidades)
 - [Exemplo](#exemplo)
+  - [Mobile](#mobile)
+  - [Desktop](#desktop)
 - [Requisitos](#requisitos)
 - [Instalação](#instalação)
-- [Author](#author)
+- [Authors](#authors)
 
 ## Funcionalidades
 
@@ -23,6 +26,14 @@
 - Exibir lista de personagens favoritos.
 
 ## Exemplo
+
+### Mobile
+
+![](https://github.com/VHMoreira/starsearch/blob/development/gifs/mobile.gif)
+
+### Desktop
+
+![](https://github.com/VHMoreira/starsearch/blob/development/gifs/desktop.gif)
 
 ## Requisitos
 
