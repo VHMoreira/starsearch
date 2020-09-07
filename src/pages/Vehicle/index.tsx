@@ -7,6 +7,7 @@ import { Content } from './styles';
 import { FiArrowLeft } from 'react-icons/fi';
 import Header from '../../shared/components/Header';
 import SingleContent from '../../shared/components/SingleContent';
+import Loading from '../../shared/components/Loading';
 
 interface Vehicle {
     name: string;
@@ -40,7 +41,7 @@ const Vehicle: React.FC = () => {
     const [vehicle, setVehicle] = useState<Vehicle>();
     const [films, setFilms] = useState<Film[]>([]);
     const [pilots, setPilots] = useState<Pilot[]>([]);
-
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function loadVehicle() {
@@ -62,6 +63,7 @@ const Vehicle: React.FC = () => {
             setVehicle(currentsVehicle);
             setFilms(responsesFilms.map(response => response.data));
             setPilots(responsesPilots.map(response => response.data));
+            setIsLoading(false);
         }
 
         loadVehicle();
@@ -70,6 +72,7 @@ const Vehicle: React.FC = () => {
 
     return (
         <Container>
+            <Loading isLoading={isLoading} />
             {vehicle &&
                 <>
                     <Header>

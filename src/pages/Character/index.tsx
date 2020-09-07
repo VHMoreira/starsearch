@@ -10,6 +10,7 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { useFavorite } from '../../hooks/Favorite';
 import { FiArrowLeft } from 'react-icons/fi';
 import SingleContent from '../../shared/components/SingleContent';
+import Loading from '../../shared/components/Loading';
 
 interface ICharacter {
     name: string;
@@ -90,6 +91,7 @@ const Character: React.FC = () => {
     const { character, alterCharacter } = useCharacter();
     const { favorites, addNewFavorite, removeFavorite } = useFavorite();
     const [isFavorite, setIsFavorite] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const history = useHistory();
 
     useEffect(() => {
@@ -100,6 +102,7 @@ const Character: React.FC = () => {
             if (currentCharacterIsFavorite) {
                 setIsFavorite(true);
                 alterCharacter(currentCharacterIsFavorite);
+                setIsLoading(false);
             } else {
                 const { films, vehicles, starships, homeworld, ...character } = state.character;
 
@@ -128,6 +131,7 @@ const Character: React.FC = () => {
                     vehicles: responsesVehicles.map(response => response.data),
                     starships: responsesStarships.map(response => response.data)
                 });
+                setIsLoading(false);
             }
         }
 
@@ -147,6 +151,7 @@ const Character: React.FC = () => {
 
     return (
         <Container>
+            <Loading isLoading={isLoading} />
             {character &&
                 <>
                     <Header>

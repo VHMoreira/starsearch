@@ -6,6 +6,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useCharacter } from '../../hooks/Character';
 import { FiArrowLeft } from 'react-icons/fi';
 import SingleContent from '../../shared/components/SingleContent';
+import Loading from '../../shared/components/Loading';
 
 interface Film {
     title: string;
@@ -51,6 +52,7 @@ const Film: React.FC = () => {
     const [starships, setStarships] = useState<Starships[]>([]);
     const [vehicles, setVehicles] = useState<Vehicles[]>([]);
     const [species, setSpecies] = useState<Species[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function loadFilm() {
@@ -90,6 +92,7 @@ const Film: React.FC = () => {
             setStarships(responsesStarships.map(response => response.data));
             setVehicles(responsesVehicles.map(response => response.data));
             setSpecies(responsesSpecies.map(response => response.data));
+            setIsLoading(false);
         }
 
         loadFilm();
@@ -97,13 +100,14 @@ const Film: React.FC = () => {
 
     return (
         <Container>
+            <Loading isLoading={isLoading} />
             {film &&
                 <>
                     <Header>
                         <div>
                             <FiArrowLeft size={30} onClick={history.goBack} />
                         </div>
-                        <h1>{film?.title}</h1>
+                        <h1>{film.title}</h1>
                     </Header>
                     <Content>
                         <SingleContent>

@@ -7,6 +7,7 @@ import { Content } from './styles';
 import { FiArrowLeft } from 'react-icons/fi';
 import Header from '../../shared/components/Header';
 import SingleContent from '../../shared/components/SingleContent';
+import Loading from '../../shared/components/Loading';
 
 interface Starship {
     name: string;
@@ -42,6 +43,7 @@ const Starship: React.FC = () => {
     const [starship, setStarship] = useState<Starship>();
     const [films, setFilms] = useState<Film[]>([]);
     const [pilots, setPilots] = useState<Pilot[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function loadStarship() {
@@ -63,6 +65,7 @@ const Starship: React.FC = () => {
             setStarship(currentsStarship);
             setFilms(responsesFilms.map(response => response.data));
             setPilots(responsesPilots.map(response => response.data));
+            setIsLoading(false);
         }
 
         loadStarship();
@@ -71,6 +74,7 @@ const Starship: React.FC = () => {
 
     return (
         <Container>
+            <Loading isLoading={isLoading} />
             {starship &&
                 <>
                     <Header>
