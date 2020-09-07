@@ -182,7 +182,7 @@ const Search: React.FC = () => {
                 {showFavoritesList &&
                     <section>
                         {favorites.map((favorite) => (
-                            <div onClick={() => handleSearchFavorite(favorite)}>
+                            <div key={favorite.name} onClick={() => handleSearchFavorite(favorite)}>
                                 <span>{favorite.name}</span>
                                 <FiArrowRight size={20} />
                             </div>
