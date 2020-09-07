@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import background from '../assets/background.jpg';
-import starWarsFont from '../assets/fonts/STARWARS.woff';
+import background from '../../assets/background.jpg';
+import starWarsFont from '../../assets/fonts/STARWARS.woff';
 
 export default createGlobalStyle`
     @font-face {
