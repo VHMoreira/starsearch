@@ -152,7 +152,7 @@ const Character: React.FC = () => {
     return (
         <Container>
             <Loading isLoading={isLoading} />
-            {character &&
+            {!isLoading &&
                 <>
                     <Header>
                         <div>
