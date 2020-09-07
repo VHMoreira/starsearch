@@ -47,30 +47,34 @@ const Starship: React.FC = () => {
 
     useEffect(() => {
         async function loadStarship() {
-            const currentsStarship = character.starships[starshipIndex];
+            try {
+                const currentsStarship = character.starships[starshipIndex];
 
-            const { films, pilots } = currentsStarship;
+                const { films, pilots } = currentsStarship;
 
-            const filmsUrls = films.map((film) => {
-                return axios.get<Film>(film);
-            });
+                const filmsUrls = films.map((film) => {
+                    return axios.get<Film>(film);
+                });
 
-            const pilotsUrls = pilots.map((pilot) => {
-                return axios.get<Pilot>(pilot);
-            });
+                const pilotsUrls = pilots.map((pilot) => {
+                    return axios.get<Pilot>(pilot);
+                });
 
-            const responsesFilms = await Promise.all(filmsUrls);
-            const responsesPilots = await Promise.all(pilotsUrls);
+                const responsesFilms = await Promise.all(filmsUrls);
+                const responsesPilots = await Promise.all(pilotsUrls);
 
-            setStarship(currentsStarship);
-            setFilms(responsesFilms.map(response => response.data));
-            setPilots(responsesPilots.map(response => response.data));
-            setIsLoading(false);
+                setStarship(currentsStarship);
+                setFilms(responsesFilms.map(response => response.data));
+                setPilots(responsesPilots.map(response => response.data));
+                setIsLoading(false);
+            } catch{
+                history.push('/error');
+            }
         }
 
         loadStarship();
         // eslint-disable-next-line
-    }, [starshipIndex]);
+    }, [starshipIndex, history]);
 
     return (
         <Container>

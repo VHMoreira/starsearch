@@ -96,48 +96,51 @@ const Character: React.FC = () => {
 
     useEffect(() => {
         async function loadCharacter() {
+            try {
+                const currentCharacterIsFavorite = favorites.find(favorite => favorite.name === state.character.name);
 
-            const currentCharacterIsFavorite = favorites.find(favorite => favorite.name === state.character.name);
+                if (currentCharacterIsFavorite) {
+                    setIsFavorite(true);
+                    alterCharacter(currentCharacterIsFavorite);
+                    setIsLoading(false);
+                } else {
+                    const { films, vehicles, starships, homeworld, ...character } = state.character;
 
-            if (currentCharacterIsFavorite) {
-                setIsFavorite(true);
-                alterCharacter(currentCharacterIsFavorite);
-                setIsLoading(false);
-            } else {
-                const { films, vehicles, starships, homeworld, ...character } = state.character;
+                    const filmsUrls = films.map((film) => {
+                        return axios.get<Film>(film);
+                    });
 
-                const filmsUrls = films.map((film) => {
-                    return axios.get<Film>(film);
-                });
+                    const vehiclesUrls = vehicles.map((vehicle) => {
+                        return axios.get<Vehicle>(vehicle);
+                    });
 
-                const vehiclesUrls = vehicles.map((vehicle) => {
-                    return axios.get<Vehicle>(vehicle);
-                });
+                    const starshipsUrls = starships.map((starship) => {
+                        return axios.get<Starship>(starship);
+                    });
 
-                const starshipsUrls = starships.map((starship) => {
-                    return axios.get<Starship>(starship);
-                });
+                    const responseHomeworld = await axios.get<HomeWorld>(homeworld);
 
-                const responseHomeworld = await axios.get<HomeWorld>(homeworld);
+                    const responsesFilms = await Promise.all(filmsUrls);
+                    const responsesVehicles = await Promise.all(vehiclesUrls);
+                    const responsesStarships = await Promise.all(starshipsUrls);
 
-                const responsesFilms = await Promise.all(filmsUrls);
-                const responsesVehicles = await Promise.all(vehiclesUrls);
-                const responsesStarships = await Promise.all(starshipsUrls);
-
-                alterCharacter({
-                    ...character,
-                    homeworld: responseHomeworld.data.name,
-                    films: responsesFilms.map(response => response.data),
-                    vehicles: responsesVehicles.map(response => response.data),
-                    starships: responsesStarships.map(response => response.data)
-                });
-                setIsLoading(false);
+                    alterCharacter({
+                        ...character,
+                        homeworld: responseHomeworld.data.name,
+                        films: responsesFilms.map(response => response.data),
+                        vehicles: responsesVehicles.map(response => response.data),
+                        starships: responsesStarships.map(response => response.data)
+                    });
+                    setIsLoading(false);
+                }
+            } catch{
+                history.push('/error');
             }
         }
 
         loadCharacter();
 
-    }, [state.character, alterCharacter, favorites]);
+    }, [state.character, alterCharacter, favorites, history]);
 
     const handleToggleFavorite = useCallback(() => {
         if (isFavorite) {

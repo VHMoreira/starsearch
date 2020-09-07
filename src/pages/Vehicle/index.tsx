@@ -45,25 +45,29 @@ const Vehicle: React.FC = () => {
 
     useEffect(() => {
         async function loadVehicle() {
-            const currentsVehicle = character.vehicles[vehicleIndex];
+            try {
+                const currentsVehicle = character.vehicles[vehicleIndex];
 
-            const { films, pilots } = currentsVehicle;
+                const { films, pilots } = currentsVehicle;
 
-            const filmsUrls = films.map((film) => {
-                return axios.get<Film>(film);
-            });
+                const filmsUrls = films.map((film) => {
+                    return axios.get<Film>(film);
+                });
 
-            const pilotsUrls = pilots.map((pilot) => {
-                return axios.get<Pilot>(pilot);
-            });
+                const pilotsUrls = pilots.map((pilot) => {
+                    return axios.get<Pilot>(pilot);
+                });
 
-            const responsesFilms = await Promise.all(filmsUrls);
-            const responsesPilots = await Promise.all(pilotsUrls);
+                const responsesFilms = await Promise.all(filmsUrls);
+                const responsesPilots = await Promise.all(pilotsUrls);
 
-            setVehicle(currentsVehicle);
-            setFilms(responsesFilms.map(response => response.data));
-            setPilots(responsesPilots.map(response => response.data));
-            setIsLoading(false);
+                setVehicle(currentsVehicle);
+                setFilms(responsesFilms.map(response => response.data));
+                setPilots(responsesPilots.map(response => response.data));
+                setIsLoading(false);
+            } catch{
+                history.push('/error');
+            }
         }
 
         loadVehicle();

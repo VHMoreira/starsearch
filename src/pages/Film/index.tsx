@@ -56,47 +56,51 @@ const Film: React.FC = () => {
 
     useEffect(() => {
         async function loadFilm() {
-            const currentsFilm = character.films[filmIndex];
+            try {
+                const currentsFilm = character.films[filmIndex];
 
-            const { characters, planets, starships, vehicles, species } = currentsFilm;
+                const { characters, planets, starships, vehicles, species } = currentsFilm;
 
-            const charactersUrls = characters.map((character) => {
-                return axios.get<Characters>(character);
-            });
+                const charactersUrls = characters.map((character) => {
+                    return axios.get<Characters>(character);
+                });
 
-            const planetsUrls = planets.map((planet) => {
-                return axios.get<Planets>(planet);
-            });
+                const planetsUrls = planets.map((planet) => {
+                    return axios.get<Planets>(planet);
+                });
 
-            const starshipsUrls = starships.map((starship) => {
-                return axios.get<Starships>(starship);
-            });
+                const starshipsUrls = starships.map((starship) => {
+                    return axios.get<Starships>(starship);
+                });
 
-            const vehiclesUrls = vehicles.map((vehicle) => {
-                return axios.get<Vehicles>(vehicle);
-            });
+                const vehiclesUrls = vehicles.map((vehicle) => {
+                    return axios.get<Vehicles>(vehicle);
+                });
 
-            const speciesUrls = species.map((specie) => {
-                return axios.get<Species>(specie);
-            });
+                const speciesUrls = species.map((specie) => {
+                    return axios.get<Species>(specie);
+                });
 
-            const responsesCharacters = await Promise.all(charactersUrls);
-            const responsesPlanets = await Promise.all(planetsUrls);
-            const responsesStarships = await Promise.all(starshipsUrls);
-            const responsesVehicles = await Promise.all(vehiclesUrls);
-            const responsesSpecies = await Promise.all(speciesUrls);
+                const responsesCharacters = await Promise.all(charactersUrls);
+                const responsesPlanets = await Promise.all(planetsUrls);
+                const responsesStarships = await Promise.all(starshipsUrls);
+                const responsesVehicles = await Promise.all(vehiclesUrls);
+                const responsesSpecies = await Promise.all(speciesUrls);
 
-            setFilm(currentsFilm);
-            setCharacters(responsesCharacters.map(response => response.data));
-            setPlanets(responsesPlanets.map(response => response.data));
-            setStarships(responsesStarships.map(response => response.data));
-            setVehicles(responsesVehicles.map(response => response.data));
-            setSpecies(responsesSpecies.map(response => response.data));
-            setIsLoading(false);
+                setFilm(currentsFilm);
+                setCharacters(responsesCharacters.map(response => response.data));
+                setPlanets(responsesPlanets.map(response => response.data));
+                setStarships(responsesStarships.map(response => response.data));
+                setVehicles(responsesVehicles.map(response => response.data));
+                setSpecies(responsesSpecies.map(response => response.data));
+                setIsLoading(false);
+            } catch{
+                history.push('/error');
+            }
         }
 
         loadFilm();
-    }, [filmIndex, character.films]);
+    }, [filmIndex, character.films, history]);
 
     return (
         <Container>
